@@ -1,23 +1,45 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { BACKGROUND_IMAGE_URL } from "../utils/Constants";
+import { checkValidSignInData } from "../utils/validations";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMsg, setErrorMsg] = useState([]);
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const pswdRef = useRef(null);
   const toggleSignUpForm = () => {
     setIsSignInForm(!isSignInForm);
   };
+  const handleSubmitBtn = () => {
+    const email = emailRef.current.value;
+    const password = pswdRef.current.value;
+    const name = !isSignInForm ? nameRef.current.value : "";
+    const validationError = checkValidSignInData(email, password);
+    if (validationError) {
+      setErrorMsg(validationError);
+      return;
+    } else {
+      setErrorMsg(null);
+      //Signin/Signup
+    }
+  };
+
   return (
     <div className="relative h-screen">
       <Header />
       <div className="absolute z-0 inset-0 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }} />
-      <div className="absolute inset-0 flex justify-center items-center">
-        <form className="bg-[#000000bf] p-8 shadow-md rounded-lg w-96">
+      <div className="absolute z-5 inset-0 flex justify-center items-center">
+        <form onSubmit={(e) => e.preventDefault()} className="bg-[#000000bf] p-8 shadow-md rounded-lg w-96">
           <h1 className="text-white font-bold text-3xl mb-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
-          {!isSignInForm && <input type="text" placeholder="Full Name" className="p-2 m-2 w-full bg-[#333]" />}
-          <input type="text" placeholder="Email" className="p-2 m-2 w-full bg-[#333]" />
-          <input type="password" placeholder="Password" className="p-2 m-2 w-full bg-[#333]" />
-          <button className="p-4 mt-10 m-2 w-full bg-[#e50914] text-white font-semibold rounded">{isSignInForm ? "Sign In" : "Sign Up"}</button>
+          {!isSignInForm && <input ref={nameRef} type="text" placeholder="Full Name" className="text-white p-2 m-2 w-full bg-[#333]" />}
+          <input ref={emailRef} type="text" placeholder="Email" className="text-white p-2 m-2 w-full bg-[#333]" />
+          <input ref={pswdRef} type="password" placeholder="Password" className="text-white p-2 m-2 w-full bg-[#333]" />
+          {errorMsg && <p className="ps-2 text-red-500">{errorMsg}</p>}
+          <button className="p-4 mt-10 m-2 w-full bg-[#e50914] text-white font-semibold rounded" onClick={handleSubmitBtn}>
+            {isSignInForm ? "Sign In" : "Sign Up"}
+          </button>
           <p className="text-white text-md mt-4">
             {isSignInForm ? "New to NetflixGPT? " : "Already a member? "}
             <span className="text-[#e50914] cursor-pointer" onClick={toggleSignUpForm}>
