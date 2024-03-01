@@ -1,6 +1,6 @@
 export const checkValidSignInData = (email, pswd) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const pswdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+  const pswdRegex = /.{6,}/;
 
   const isEmailValid = emailRegex.test(email);
   const isPswdValid = pswdRegex.test(pswd);

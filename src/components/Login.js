@@ -2,12 +2,15 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { BACKGROUND_IMAGE_URL } from "../utils/Constants";
 import { checkValidSignInData } from "../utils/validations";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState([]);
   const nameRef = useRef(null);
@@ -30,8 +33,19 @@ const Login = () => {
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log("user", user);
-            navigate("/browse");
+            updateProfile(user, {
+              displayName: name,
+              photoURL: "https://fastly.picsum.photos/id/942/200/200.jpg?hmac=Gh7W-H3ZGmweB9STLwQvq-IHkxrVyawHVTKYxy-u9mA",
+            })
+              .then(() => {
+                console.log("user", user);
+                const { uid, email, displayName, photoURL } = auth.currentUser;
+                dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+                navigate("/browse");
+              })
+              .catch((error) => {
+                setErrorMsg(error.message);
+              });
           })
           .catch((error) => {
             setErrorMsg(error.message);
