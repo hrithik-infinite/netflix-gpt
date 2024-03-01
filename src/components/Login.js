@@ -4,8 +4,10 @@ import { BACKGROUND_IMAGE_URL } from "../utils/Constants";
 import { checkValidSignInData } from "../utils/validations";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState([]);
   const nameRef = useRef(null);
@@ -29,6 +31,7 @@ const Login = () => {
           .then((userCredential) => {
             const user = userCredential.user;
             console.log("user", user);
+            navigate("/browse");
           })
           .catch((error) => {
             setErrorMsg(error.message);
@@ -38,6 +41,7 @@ const Login = () => {
           .then((userCredential) => {
             const user = userCredential.user;
             console.log("user", user);
+            navigate("/browse");
           })
           .catch((error) => {
             setErrorMsg(error.message);
