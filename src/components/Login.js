@@ -38,7 +38,6 @@ const Login = () => {
               photoURL: "https://fastly.picsum.photos/id/942/200/200.jpg?hmac=Gh7W-H3ZGmweB9STLwQvq-IHkxrVyawHVTKYxy-u9mA",
             })
               .then(() => {
-                console.log("user", user);
                 const { uid, email, displayName, photoURL } = auth.currentUser;
                 dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
                 navigate("/browse");
@@ -54,7 +53,6 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log("user", user);
             navigate("/browse");
           })
           .catch((error) => {

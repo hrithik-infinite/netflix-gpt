@@ -11,6 +11,7 @@ import { toggleGPTSearchView } from "../utils/gptSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
   const user = useSelector((store) => store.user);
   const handleSignout = () => {
     signOut(auth)
@@ -45,7 +46,7 @@ const Header = () => {
       {user && (
         <div className="flex items-center">
           <button onClick={handleGPTClick} className="text-black px-4 py-2 mx-4 bg-white rounded-lg">
-            AI Search
+            {showGPTSearch ? "Home Page" : "AI Search"}
           </button>
           <img src={user?.photoURL ? user?.photoURL : avatar} alt="avatar" className="w-10 h-10 rounded-full" />
           <button onClick={handleSignout} className="ml-4 bg-red-700 text-white px-4 py-2 rounded-lg">
