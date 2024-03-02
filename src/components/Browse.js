@@ -11,7 +11,9 @@ const Browse = () => {
       <Header />
       <div className="absolute z-0 inset-0 bg-cover bg-no-repeat bg-center">
         <MainContainer />
-        <SecondaryContainer />
+        <div className="-mt-40 bg-black">
+          <SecondaryContainer />
+        </div>
       </div>
     </div>
   );
