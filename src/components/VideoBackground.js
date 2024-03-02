@@ -1,9 +1,21 @@
-import React from 'react'
+// VideoBackground.js
+import React from "react";
+import { useSelector } from "react-redux";
+import useFetchTrailer from "../hooks/useFetchTrailer";
 
-const VideoBackground = () => {
+const VideoBackground = ({ movieId }) => {
+  const trailer = useSelector((store) => store.movies?.trailerVideo);
+  useFetchTrailer(movieId);
   return (
-    <div>VideoBackground</div>
-  )
-}
+    <div className="h-full w-full absolute inset-0 pointer-events-none">
+      <iframe
+        src={"https://www.youtube.com/embed/" + trailer?.key}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        className="h-full w-full pointer-events-auto"></iframe>
+    </div>
+  );
+};
 
-export default VideoBackground
+export default VideoBackground;
