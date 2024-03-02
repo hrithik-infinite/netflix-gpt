@@ -15,7 +15,7 @@ const VideoTitle = ({ title, overview }) => {
           </button>
           <button className="bg-gray-800 text-white px-6 py-2 opacity-80 rounded-md shadow-lg hover:bg-gray-900 transition duration-300">
             <InfoOutlinedIcon />
-            More Info
+            <span className="ml-2">More Info</span>
           </button>
         </div>
       </div>
