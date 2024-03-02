@@ -1,4 +1,4 @@
-#Link -> https://netflixgpt-hrithik.web.app
+# Link -> https://netflixgpt-hrithik.web.app
 # Netflix GPT
 
 - Create React App
