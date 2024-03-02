@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
+import { toggleGPTSearchView } from "../utils/gptSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const Header = () => {
       .catch((error) => {
         navigate("/error");
       });
+  };
+  const handleGPTClick = () => {
+    dispatch(toggleGPTSearchView());
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -40,6 +44,9 @@ const Header = () => {
 
       {user && (
         <div className="flex items-center">
+          <button onClick={handleGPTClick} className="text-black px-4 py-2 mx-4 bg-white rounded-lg">
+            AI Search
+          </button>
           <img src={user?.photoURL ? user?.photoURL : avatar} alt="avatar" className="w-10 h-10 rounded-full" />
           <button onClick={handleSignout} className="ml-4 bg-red-700 text-white px-4 py-2 rounded-lg">
             Sign Out
