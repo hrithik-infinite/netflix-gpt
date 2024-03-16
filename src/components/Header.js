@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { toggleGPTSearchView } from "../utils/gptSlice";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,7 +47,8 @@ const Header = () => {
       {user && (
         <div className="flex items-center">
           <button onClick={handleGPTClick} className="text-black px-4 py-2 mx-4 bg-white rounded-lg">
-            {showGPTSearch ? "Home Page" : "AI Search"}
+            <AutoAwesomeIcon style={{ fontSize: "large" }} />
+            {showGPTSearch ? "  Home Page" : "  AI Search"}
           </button>
           <img src={user?.photoURL ? user?.photoURL : avatar} alt="avatar" className="w-10 h-10 rounded-full" />
           <button onClick={handleSignout} className="ml-4 bg-red-700 text-white px-4 py-2 rounded-lg">
