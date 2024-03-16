@@ -8,21 +8,21 @@ import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import GPTSearch from "./GPTSearch";
 import { useSelector } from "react-redux";
+import MoreInfo from "./MoreInfo";
 
 const Browse = () => {
   const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
+  const { showMoreInfo } = useSelector((store) => store.moreInfo);
+
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
+
   return (
     <div className="relative h-screen">
       <Header />
-      {showGPTSearch ? (
-        <div className="absolute w-full h-full bg-black">
-          <GPTSearch />
-        </div>
-      ) : (
+      {!showGPTSearch && (
         <div className="absolute z-0 inset-0 bg-cover bg-no-repeat bg-center">
           <MainContainer />
           <div className="-mt-40 bg-black">
@@ -30,6 +30,13 @@ const Browse = () => {
           </div>
         </div>
       )}
+      {showGPTSearch && (
+        <div className="absolute w-full h-full bg-black">
+          <GPTSearch />
+        </div>
+      )}
+      {showMoreInfo && <div className="absolute inset-0 bg-black opacity-50" />}
+      {showMoreInfo && <MoreInfo />}
     </div>
   );
 };
