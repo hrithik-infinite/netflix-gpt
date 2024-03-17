@@ -5,6 +5,7 @@ const moreInfoSlice = createSlice({
   initialState: {
     showMoreInfo: false,
     moreInfoData: null,
+    completeData: null,
   },
   reducers: {
     toggleMoreInfo: (state) => {
@@ -13,7 +14,10 @@ const moreInfoSlice = createSlice({
     addMoreInfoData: (state, action) => {
       state.moreInfoData = action.payload;
     },
+    movieData: (state, action) => {
+      state.completeData = action.payload;
+    },
   },
 });
-export const { addMoreInfoData, toggleMoreInfo } = moreInfoSlice.actions;
+export const { addMoreInfoData, toggleMoreInfo, movieData } = moreInfoSlice.actions;
 export default moreInfoSlice.reducer;
