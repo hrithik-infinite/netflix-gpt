@@ -11,8 +11,15 @@ const MovieCard = ({ data }) => {
     navigate(`/movie/${data.id}`);
   };
   return (
-    <div className="bg-black rounded-lg shadow-lg p-2 w-[200px] h-[300px]" onClick={handleCardClick}>
-      <img src={IMAGE_CDN_PATH + poster_path} alt={original_title} className="w-full h-full object-contain	" />
+    <div
+      className="bg-black rounded-lg shadow-lg p-2 w-[200px] h-[300px]"
+      onClick={handleCardClick}
+    >
+      <img
+        src={IMAGE_CDN_PATH + poster_path}
+        alt={original_title}
+        className="w-full h-full object-contain	"
+      />
     </div>
   );
 };

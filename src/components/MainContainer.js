@@ -14,7 +14,11 @@ const MainContainer = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center relative">
       <VideoBackground movieId={id} />
-      <VideoTitle title={original_title} overview={overview} mainMovie={mainMovie} />
+      <VideoTitle
+        title={original_title}
+        overview={overview}
+        mainMovie={mainMovie}
+      />
     </div>
   );
 };

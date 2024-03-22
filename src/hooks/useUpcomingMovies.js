@@ -8,7 +8,10 @@ const useUpcomingMovies = () => {
   const upcoming = useSelector((store) => store.movies.upcoming);
 
   const getUpcoming = async () => {
-    const data = await fetch("https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1", API_OPTIONS)
+    const data = await fetch(
+      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+      API_OPTIONS,
+    )
       .then((response) => response.json())
       .then((response) => {
         dispatch(addUpcomingMovies(response.results));

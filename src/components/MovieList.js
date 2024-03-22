@@ -29,7 +29,12 @@ const MovieList = ({ title, movies }) => {
       <div className="flex overflow-x-auto no-scrollbar relative">
         {movies &&
           movies.map((movie) => (
-            <div key={movie.id} className="flex-shrink-0 mr-4 cursor-pointer relative" onMouseEnter={(e) => handleMouseEnter(movie, e)} onMouseLeave={handleMouseLeave}>
+            <div
+              key={movie.id}
+              className="flex-shrink-0 mr-4 cursor-pointer relative"
+              onMouseEnter={(e) => handleMouseEnter(movie, e)}
+              onMouseLeave={handleMouseLeave}
+            >
               <MovieCard data={movie} />
               {/* <>{showDetail && hoveredMovie && hoveredMovie.id === movie.id && (
                 <div

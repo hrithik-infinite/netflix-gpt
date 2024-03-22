@@ -7,7 +7,10 @@ const useGetMovieDetails = () => {
   const dispatch = useDispatch();
   const moreInfoMovie = useSelector((store) => store.moreInfo.moreInfoData);
   const getMovieData = async () => {
-    const data = await fetch("https://api.themoviedb.org/3/movie/" + moreInfoMovie?.id, API_OPTIONS)
+    const data = await fetch(
+      "https://api.themoviedb.org/3/movie/" + moreInfoMovie?.id,
+      API_OPTIONS,
+    )
       .then((response) => response.json())
       .then((response) => {
         dispatch(movieData(response));

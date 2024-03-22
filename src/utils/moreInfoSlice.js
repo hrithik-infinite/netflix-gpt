@@ -19,5 +19,6 @@ const moreInfoSlice = createSlice({
     },
   },
 });
-export const { addMoreInfoData, toggleMoreInfo, movieData } = moreInfoSlice.actions;
+export const { addMoreInfoData, toggleMoreInfo, movieData } =
+  moreInfoSlice.actions;
 export default moreInfoSlice.reducer;

@@ -31,7 +31,14 @@ const Header = () => {
       if (user) {
         navigate("/browse");
         const { uid, email, displayName, photoURL } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          }),
+        );
       } else {
         navigate("/");
         dispatch(removeUser());
@@ -46,12 +53,22 @@ const Header = () => {
 
       {user && (
         <div className="flex items-center">
-          <button onClick={handleGPTClick} className="text-black px-4 py-2 mx-4 bg-white rounded-lg">
+          <button
+            onClick={handleGPTClick}
+            className="text-black px-4 py-2 mx-4 bg-white rounded-lg"
+          >
             <AutoAwesomeIcon style={{ fontSize: "large" }} />
             {showGPTSearch ? "  Home Page" : "  AI Search"}
           </button>
-          <img src={user?.photoURL ? user?.photoURL : avatar} alt="avatar" className="w-10 h-10 rounded-full" />
-          <button onClick={handleSignout} className="ml-4 bg-red-700 text-white px-4 py-2 rounded-lg">
+          <img
+            src={user?.photoURL ? user?.photoURL : avatar}
+            alt="avatar"
+            className="w-10 h-10 rounded-full"
+          />
+          <button
+            onClick={handleSignout}
+            className="ml-4 bg-red-700 text-white px-4 py-2 rounded-lg"
+          >
             Sign Out
           </button>
         </div>

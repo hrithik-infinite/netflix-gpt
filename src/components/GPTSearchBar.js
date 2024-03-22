@@ -8,7 +8,12 @@ const GPTSearchBar = () => {
   const dispatch = useDispatch();
   const searchTxt = useRef();
   const searchMovieinTMDB = async (movie) => {
-    const data = await fetch("https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1", API_OPTIONS);
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      API_OPTIONS,
+    );
     const json = await data.json();
     return json;
   };
@@ -26,13 +31,23 @@ const GPTSearchBar = () => {
     const movieArray = stringWithoutBrackets.split(", ");
     const promiseArray = movieArray.map((movie) => searchMovieinTMDB(movie));
     const tmdbResults = await Promise.all(promiseArray);
-    dispatch(addGPTMovieResult({ tmdbResults: tmdbResults, movieNames: movieArray }));
+    dispatch(
+      addGPTMovieResult({ tmdbResults: tmdbResults, movieNames: movieArray }),
+    );
   };
 
   return (
     <div className=" w-full flex items-center justify-center bg-black p-4 rounded-md shadow-md ">
-      <input ref={searchTxt} type="text" placeholder="Search..." className="w-1/3 py-2 px-4 bg-gray-700 text-white placeholder-gray-300 border-0 rounded-l-md focus:outline-none" />
-      <button className="px-6 py-2 bg-red-600 text-white font-semibold rounded-r-md hover:bg-red-700 focus:outline-none" onClick={handleGPTSearch}>
+      <input
+        ref={searchTxt}
+        type="text"
+        placeholder="Search..."
+        className="w-1/3 py-2 px-4 bg-gray-700 text-white placeholder-gray-300 border-0 rounded-l-md focus:outline-none"
+      />
+      <button
+        className="px-6 py-2 bg-red-600 text-white font-semibold rounded-r-md hover:bg-red-700 focus:outline-none"
+        onClick={handleGPTSearch}
+      >
         Search
       </button>
     </div>

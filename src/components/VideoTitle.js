@@ -28,7 +28,10 @@ const VideoTitle = ({ title, overview, mainMovie }) => {
           <button className="bg-white text-black px-6 py-2 rounded-md shadow-lg hover:bg-red-700 transition duration-300">
             <PlayArrowIcon style={{ color: "black" }} /> Play
           </button>
-          <button className="bg-gray-800 text-white px-6 py-2 opacity-80 rounded-md shadow-lg hover:bg-gray-900 transition duration-300" onClick={showMoreInfo}>
+          <button
+            className="bg-gray-800 text-white px-6 py-2 opacity-80 rounded-md shadow-lg hover:bg-gray-900 transition duration-300"
+            onClick={showMoreInfo}
+          >
             <InfoOutlinedIcon />
             <span className="ml-2">More Info</span>
           </button>
